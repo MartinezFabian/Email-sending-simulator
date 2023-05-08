@@ -15,6 +15,7 @@ html {
   --secondary-color: #7474bf;
   --light-gray: #f3f3f3;
   --button-send-color: #5454e9;
+  --button-reset-color: #111;
   --message-error-color: rgb(165 0 0);
   --message-success-color: rgb(58, 159, 0);
   --background-gradient-start: #516395;
@@ -107,7 +108,8 @@ form {
   border-color: var(--light-gray);
 }
 
-.form__input:focus {
+.form__input:focus,
+.form__textarea:focus {
   outline: none; /* Elimina el contorno predeterminado en algunos navegadores */
   border-color: var(--secondary-color);
 }
@@ -116,4 +118,48 @@ form {
   resize: none; /* Desactiva la re-dimensión del textarea */
   max-width: 100%;
   height: 20rem;
+}
+
+/* buttons */
+.form__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+@media (min-width: 480px) {
+  .form__button {
+    gap: 4rem;
+  }
+}
+
+.icon-button {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+}
+
+.form__button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+  padding: 0.8rem;
+  cursor: pointer;
+  color: var(--main-color);
+}
+
+.form__button--send {
+  background-color: var(--button-send-color);
+}
+
+.form__button--reset {
+  background-color: var(--button-reset-color);
+}
+
+.form__button:hover {
+  opacity: 0.9;
 }
