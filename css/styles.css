@@ -11,6 +11,7 @@ html {
 
 /* Variables */
 :root {
+  --main-color: #fff;
   --button-send-color: #5454e9;
   --message-error-color: rgb(165 0 0);
   --message-success-color: rgb(58, 159, 0);
@@ -19,6 +20,8 @@ html {
   --background-gradient-end: #614385;
   --main-font: "Poppins", sans-serif;
 }
+
+/* Estilos Globales*/
 
 body {
   background: var(--background-gradient-end); /* fallback for old browsers */
@@ -42,7 +45,9 @@ body {
   margin: 2rem 0;
 }
 
-[class$="__container"] {
+/* main section */
+
+.email-sending__container {
   max-width: 60rem;
   width: 90%; /* cuando el ancho sea menos de 600px va a ocupar el 90% */
   margin: 0 auto; /* centra el contenedor */
@@ -50,4 +55,12 @@ body {
 
 .email-sending__heading {
   margin-top: 20rem;
+  font-weight: 400;
+  color: var(--main-color);
+}
+
+.email-sending__content {
+  background-color: var(--main-color);
+  padding: 4rem;
+  border-radius: 1rem;
 }
