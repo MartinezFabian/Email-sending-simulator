@@ -28,6 +28,9 @@
               placeholder="Email Destino, ej: miemail@email.com"
               class="form__input"
             />
+            <p class="form__message form__message--error">
+              El campo email es obligatorio
+            </p>
           </div>
 
           <div class="form__field">
@@ -39,6 +42,9 @@
               placeholder="Asunto del correo electrónico"
               class="form__input"
             />
+            <p class="form__message form__message--error">
+              El campo asunto es obligatorio
+            </p>
           </div>
 
           <div class="form__field">
@@ -50,6 +56,9 @@
               placeholder="Mensaje del correo electrónico"
               class="form__textarea"
             ></textarea>
+            <p class="form__message form__message--error">
+              El campo mensaje es obligatorio
+            </p>
           </div>
 
           <div id="buttons" class="form__buttons">
@@ -95,7 +104,13 @@
           </div>
         </form>
 
-        <span class="loader"></span>
+        <div class="loader__container">
+          <span class="loader"></span>
+        </div>
+
+        <p class="form__message form__message--success">
+          Mensaje enviado correctamente
+        </p>
       </div>
     </main>
   </body>
