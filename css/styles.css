@@ -1,0 +1,53 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Variables */
+:root {
+  --button-send-color: #5454e9;
+  --message-error-color: rgb(165 0 0);
+  --message-success-color: rgb(58, 159, 0);
+  --loader-color: #7474bf;
+  --background-gradient-start: #516395;
+  --background-gradient-end: #614385;
+  --main-font: "Poppins", sans-serif;
+}
+
+body {
+  background: var(--background-gradient-end); /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    var(--background-gradient-start),
+    var(--background-gradient-end)
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    var(--background-gradient-start),
+    var(--background-gradient-end)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  font-family: var(--main-font);
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+[class$="__heading"] {
+  margin: 2rem 0;
+}
+
+[class$="__container"] {
+  max-width: 60rem;
+  width: 90%; /* cuando el ancho sea menos de 600px va a ocupar el 90% */
+  margin: 0 auto; /* centra el contenedor */
+}
+
+.email-sending__heading {
+  margin-top: 20rem;
+}
