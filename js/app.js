@@ -41,28 +41,35 @@ function main() {
           break;
       }
 
-      showMessageError(message, parentElement);
+      showErrorMessage(message, parentElement);
     } else {
-      console.log("El input tiene información");
+      clearErrorMessages(e.target.parentElement);
     }
   }
 
-  function showMessageError(message, parentElement) {
+  function showErrorMessage(message, parentElement) {
     //comprar si ya existe el mensaje de error en el div padre del input
-    const existMessageError = parentElement.querySelector(
+    const existErrorMessage = parentElement.querySelector(
       ".form__message--error"
     );
 
-    if (existMessageError) {
+    if (existErrorMessage) {
       return;
     }
 
     //generar el mensaje de error en el HTML
-    const messageErrorElement = document.createElement("P");
-    messageErrorElement.textContent = message;
-    messageErrorElement.classList.add("form__message", "form__message--error");
+    const errorMessageElement = document.createElement("P");
+    errorMessageElement.textContent = message;
+    errorMessageElement.classList.add("form__message", "form__message--error");
 
     //Agregar el mensaje de error dentro del elemento padre del input
-    parentElement.appendChild(messageErrorElement);
+    parentElement.appendChild(errorMessageElement);
+  }
+
+  function clearErrorMessages(parentElement) {
+    const errorMessage = parentElement.querySelector(".form__message--error");
+    if (errorMessage) {
+      errorMessage.remove();
+    }
   }
 }
