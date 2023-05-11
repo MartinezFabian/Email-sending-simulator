@@ -43,19 +43,22 @@ function main() {
 
       showErrorMessage(message, parentElement);
     } else {
+      //si el contenido del input no esta vacío
+
+      //si el input es de email y el email ingresado es invalido
+      if (e.target.id === "email" && !validateEmail(e.target.value)) {
+        showErrorMessage("El email no es válido", e.target.parentElement);
+        return;
+      }
+
+      // eliminamos el mensaje de error si existe
       clearErrorMessages(e.target.parentElement);
     }
   }
 
   function showErrorMessage(message, parentElement) {
-    //comprar si ya existe el mensaje de error en el div padre del input
-    const existErrorMessage = parentElement.querySelector(
-      ".form__message--error"
-    );
-
-    if (existErrorMessage) {
-      return;
-    }
+    //verifica si ya existe un mensaje de error y si es asi lo elimina
+    clearErrorMessages(parentElement);
 
     //generar el mensaje de error en el HTML
     const errorMessageElement = document.createElement("P");
@@ -67,9 +70,20 @@ function main() {
   }
 
   function clearErrorMessages(parentElement) {
+    // Buscar un mensaje de error dentro del elemento padre
     const errorMessage = parentElement.querySelector(".form__message--error");
+    // Verificar si se encontró un mensaje de error
     if (errorMessage) {
-      errorMessage.remove();
+      errorMessage.remove(); // Eliminar el mensaje de error
     }
+  }
+
+  function validateEmail(email) {
+    // Expresión regular para validar el formato del correo electrónico
+    const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    // Utilizar el método match para verificar si el correo electrónico ingresado coincide con la expresión regular
+    const result = email.match(regex) !== null;
+
+    return result;
   }
 }
