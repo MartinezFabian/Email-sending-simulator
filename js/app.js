@@ -8,6 +8,7 @@ function main() {
   const inputSubject = document.querySelector("#subject");
   const inputMessage = document.querySelector("#message");
   const btnSend = document.querySelector("#button-send");
+  const btnReset = document.querySelector("#button-reset");
   const form = document.querySelector("#form");
 
   const emailData = {
@@ -21,12 +22,14 @@ function main() {
   registerEventListeners();
 
   function registerEventListeners() {
-    // el evento blur se dispara cuando el input pierde el foco
+    // el evento "input" se dispara cuando el valor del input cambia
     inputEmail.addEventListener("input", validateInput);
 
     inputSubject.addEventListener("input", validateInput);
 
     inputMessage.addEventListener("input", validateInput);
+
+    btnReset.addEventListener("click", resetForm);
   }
 
   function validateInput(e) {
@@ -112,5 +115,26 @@ function main() {
       btnSend.classList.remove("form-button--opacity");
       btnSend.disabled = false;
     }
+  }
+
+  function resetForm(e) {
+    //evitar que se produzca el comportamiento predeterminado
+    e.preventDefault();
+
+    //limpiar el objeto emailData
+    emailData.email = "";
+    emailData.message = "";
+    emailData.subject = "";
+
+    //deshabilitar el btnSend
+    checkEmailData();
+
+    //limpiar el form
+    form.reset();
+
+    //limpiar mensajes de error si existen
+    clearErrorMessages(inputEmail.parentElement);
+    clearErrorMessages(inputSubject.parentElement);
+    clearErrorMessages(inputMessage.parentElement);
   }
 }
