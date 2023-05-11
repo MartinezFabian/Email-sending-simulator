@@ -161,8 +161,8 @@ form {
   background-color: var(--button-reset-color);
 }
 
-.form__button:hover {
-  opacity: 0.9;
+.form-button--opacity {
+  opacity: 0.8;
 }
 
 /* messages */

@@ -7,7 +7,14 @@ function main() {
   const inputEmail = document.querySelector("#email");
   const inputSubject = document.querySelector("#subject");
   const inputMessage = document.querySelector("#message");
+  const btnSend = document.querySelector("#button-send");
   const form = document.querySelector("#form");
+
+  const emailData = {
+    email: "",
+    subject: "",
+    message: "",
+  };
 
   //Functions
 
@@ -15,11 +22,11 @@ function main() {
 
   function registerEventListeners() {
     // el evento blur se dispara cuando el input pierde el foco
-    inputEmail.addEventListener("blur", validateInput);
+    inputEmail.addEventListener("input", validateInput);
 
-    inputSubject.addEventListener("blur", validateInput);
+    inputSubject.addEventListener("input", validateInput);
 
-    inputMessage.addEventListener("blur", validateInput);
+    inputMessage.addEventListener("input", validateInput);
   }
 
   function validateInput(e) {
@@ -42,17 +49,26 @@ function main() {
       }
 
       showErrorMessage(message, parentElement);
+      emailData[e.target.name] = ""; // limpiamos el valor del objeto emailData
+      checkEmailData();
     } else {
       //si el contenido del input no esta vacío
 
       //si el input es de email y el email ingresado es invalido
       if (e.target.id === "email" && !validateEmail(e.target.value)) {
         showErrorMessage("El email no es válido", e.target.parentElement);
+        emailData[e.target.name] = ""; // limpiamos el valor del objeto emailData
+        checkEmailData();
         return;
       }
 
       // eliminamos el mensaje de error si existe
       clearErrorMessages(e.target.parentElement);
+
+      //el valor de input paso las validaciones entonces asignamos su valor al objeto emailData
+      emailData[e.target.name] = e.target.value.trim().toLowerCase();
+
+      checkEmailData();
     }
   }
 
@@ -85,5 +101,16 @@ function main() {
     const result = email.match(regex) !== null;
 
     return result;
+  }
+
+  // Habilita el botón de envío del formulario si todas las propiedades del objeto emailData tienen valores no vacíos
+  function checkEmailData() {
+    if (Object.values(emailData).includes("")) {
+      btnSend.classList.add("form-button--opacity");
+      btnSend.disabled = true;
+    } else {
+      btnSend.classList.remove("form-button--opacity");
+      btnSend.disabled = false;
+    }
   }
 }
