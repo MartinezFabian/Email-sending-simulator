@@ -56,14 +56,14 @@ body {
 }
 
 .email-sending__heading {
-  margin-top: 8rem;
+  margin-top: 4rem;
   font-weight: 400;
   color: var(--main-color);
 }
 
 @media (min-width: 480px) {
   .email-sending__heading {
-    margin-top: 20rem;
+    margin-top: 12rem;
   }
 }
 
