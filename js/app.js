@@ -9,7 +9,9 @@ function main() {
   const inputMessage = document.querySelector("#message");
   const btnSend = document.querySelector("#button-send");
   const btnReset = document.querySelector("#button-reset");
+  const loader = document.querySelector("#loader");
   const form = document.querySelector("#form");
+  const messageSuccess = document.querySelector("#message-success");
 
   const emailData = {
     email: "",
@@ -30,6 +32,8 @@ function main() {
     inputMessage.addEventListener("input", validateInput);
 
     btnReset.addEventListener("click", resetForm);
+
+    form.addEventListener("submit", sendEmail);
   }
 
   function validateInput(e) {
@@ -136,5 +140,37 @@ function main() {
     clearErrorMessages(inputEmail.parentElement);
     clearErrorMessages(inputSubject.parentElement);
     clearErrorMessages(inputMessage.parentElement);
+  }
+
+  function sendEmail(e) {
+    //evitar que se produzca el comportamiento predeterminado
+    e.preventDefault();
+
+    //mostrar el loader
+    loader.classList.remove("loader-hidden");
+
+    //ocultar el loader luego de 3 segundos
+    setTimeout(() => {
+      loader.classList.add("loader-hidden");
+
+      //mostrar el mensaje de enviado
+      messageSuccess.classList.remove("message-success-hidden");
+
+      //ocultar el mensaje de enviado luego de 4 segundos
+      setTimeout(() => {
+        messageSuccess.classList.add("message-success-hidden");
+      }, 4000);
+    }, 3000);
+
+    //limpiar el objeto emailData
+    emailData.email = "";
+    emailData.message = "";
+    emailData.subject = "";
+
+    //deshabilitar el btnSend
+    checkEmailData();
+
+    //limpiar el form
+    form.reset();
   }
 }

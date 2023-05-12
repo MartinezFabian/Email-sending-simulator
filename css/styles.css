@@ -183,6 +183,12 @@ form {
   margin-top: 5rem;
 }
 
+.message-success-hidden {
+  display: none;
+}
+
+/* loader */
+
 .loader__container {
   display: flex;
   justify-content: center;
@@ -207,4 +213,8 @@ form {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.loader-hidden {
+  display: none;
 }
